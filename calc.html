@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Calculator</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #141e30, #243b55);
+      color: white;
+      padding: 20px;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .calculator {
+      background-color: #1c1c1c;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #00ffc8;
+    }
+
+    #display {
+      width: 100%;
+      padding: 15px;
+      font-size: 22px;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      text-align: right;
+      background-color: #333;
+      color: white;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .buttons button {
+      padding: 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      background-color: #444;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .buttons button:hover {
+      background-color: #666;
+    }
+
+    .clear {
+      grid-column: span 4;
+      background-color: #e74c3c;
+    }
+
+    .clear:hover {
+      background-color: #c0392b;
+    }
+
+    @media (max-width: 400px) {
+      .calculator {
+        padding: 15px;
+      }
+
+      .buttons button {
+        padding: 16px;
+        font-size: 16px;
+      }
+
+      #display {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calculator">
+    <h2>Basic Calculator</h2>
+    <input type="text" id="display" disabled />
+    <div class="buttons">
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button onclick="append('/')">/</button>
+
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button onclick="append('*')">*</button>
+
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button onclick="append('-')">-</button>
+
+      <button onclick="append('0')">0</button>
+      <button onclick="append('.')">.</button>
+      <button onclick="calculate()">=</button>
+      <button onclick="append('+')">+</button>
+
+      <button class="clear" onclick="clearDisplay()">C</button>
+    </div>
+  </div>
+
+  <script>
+    function append(val) {
+      document.getElementById('display').value += val;
+    }
+
+    function clearDisplay() {
+      document.getElementById('display').value = '';
+    }
+
+    function calculate() {
+      try {
+        let output = eval(document.getElementById('display').value);
+        document.getElementById('display').value = output;
+      } catch (e) {
+        document.getElementById('display').value = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
